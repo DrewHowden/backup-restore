@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Install required dependencies
+sudo apt install -y p7zip
+
+# Copy backup.7z to home directory
+cp ./backup.7z ~
+
+# Switch to home directory
+cd ~
+
+# Unarchive backup.7z
+7z x ~/backup.7z -orestore
+
+# Delete backup.7z after unarchiving it
+rm ~/backup.7z
+
+# Copy files from backup under ./home to home directory, including hidden files
+cp -r ~/restore/home/{.,}* ~
+
+# Copy scripts from backup to /usr/local/bin, and mark them as executable
+sudo cp ~/restore/bin/* /usr/local/bin
+sudo chmod +x -R /usr/local/bin
+
+# Clean up afterward
+rm -rf ~/restore
+
+# Call any scripts or commands you want to run afterward, like so:
+#app-install

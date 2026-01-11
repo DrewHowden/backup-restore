@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Update the system
+sudo apt update
+sudo apt upgrade -y
+
+# Install packages from apt (if not on Debian/Ubuntu or derivatives, REPLACE apt WITH YOUR DISTRIBUTION'S PACKAGE MANAGER!)
+sudo apt install -y flatpak # Put packages to install here
+
+# Add Flathub as Flatpak repo and install Flatpaks
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y # Put Flatpaks to install here (e.g. com.spotify.Client)
+
+# Install Snaps
+sudo snap install # Put Snaps to install here
+
+# Remove unwanted packages (again, if not on Debian/Ubuntu or derivatives, REPLACE apt WITH YOUR DISTRIBUTION'S PACKAGE MANAGER!)
+sudo apt remove -y # Put pre-installed packages to remove here
+
+# Remove unwanted Snaps
+sudo snap remove # Put pre-installed Snaps to remove here
+
+# Remove unused dependencies and clean up afterward (of course these commands will be different on non-Debian distros)
+sudo apt autoremove -y
+sudo apt autoclean
+
+# Finally, reboot the system if requested by user
+echo -n "Finished! Do you want to reboot the system? [y/N] "
+read REBOOT
+if [ "$REBOOT" = 'y' ] || [ "$REBOOT" = 'Y' ]; then
+    reboot
+fi

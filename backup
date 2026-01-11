@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Create required directories
+mkdir -p ~/backup/home
+mkdir ~/backup/bin
+# Feel free to add more directories here if required
+
+# Replace INSERT_DIRECTORIES_TO_BE_BACKED_UP_HERE below with directores under your home directory to be backed up (e.g. ~/Documents ~/Pictures ~/Videos etc.)
+cp -r INSERT_DIRECTORIES_TO_BE_BACKED_UP_HERE ~/backup/home
+
+# Copy scripts in /usr/local/bin to backup
+cp -r /usr/local/bin ~/backup
+
+# Create encrypted archive of backup, to be copied to external/cloud storage
+7z a -p -mhe=on ~/Desktop/backup.7z ~/backup/*
+
+# Clean up afterward
+rm -rf ~/backup
