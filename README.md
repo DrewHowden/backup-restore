@@ -3,6 +3,10 @@
 
 This script is meant to be run as a **regular user**.
 
+Dependencies:
+- `p7zip`
+    - Can be installed on Debian/Ubuntu (and derivatives) with `sudo apt install p7zip`
+
 Installation:
 1. Replace `INSERT_DIRECTORIES_TO_BE_BACKED_UP_HERE` with directores under your home directory to be backed up (e.g. `~/Documents ~/Pictures ~/Videos` etc.)
     - NOTE: The directories specified here need to be at the root of your home folder.
